@@ -13,8 +13,11 @@
   ],
   "compilerOptions": {
     "moduleResolution": "node",
-    "module": "esnext",
-    "types": [],
+    "module": "NodeNext",
+    "composite": true,
+    "types": [
+      "element-plus/global"
+    ],
     "paths": {
       "@/*": [
         "./src/*"
