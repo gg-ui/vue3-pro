@@ -68,8 +68,11 @@ function onSubmit() {
   transform: translate(-50%, -50%);
   width: 600px;
   height: 300px;
-  background-color: #fff;
-  z-index: 50;
+  background-image: linear-gradient(
+       var(--rotate)
+       , #5ddcff, #3c67e3 43%, #4e00c2);
+  border-radius: 8px;
+  animation: spin 2.5s linear infinite;
   padding: 40px 20px;
   .title{
     text-align: center;
@@ -84,21 +87,18 @@ function onSubmit() {
   }
   .active{
     background-image: linear-gradient(to right, green, #1804ed, yellow);
-
+    color: #fff;
   }
   &::before{
      content: "";
-     width: 104%;
-     height: 102%;
-     border-radius: 8px;
-     background-image: linear-gradient(
-       var(--rotate)
-       , #5ddcff, #3c67e3 43%, #4e00c2);
      position: absolute;
+     width: 99%;
+     height: 98%;
+     border-radius: 8px;
+     background-color: #fff;
      z-index: -1;
-     top: -1%;
-     left: -2%;
-     animation: spin 2.5s linear infinite;
+     top: 1%;
+     left: .5%;
   }
 }
 </style>
