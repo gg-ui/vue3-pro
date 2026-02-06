@@ -12,7 +12,23 @@
     }
   ],
   "compilerOptions": {
+    "moduleResolution": "node",
     "module": "NodeNext",
-    "types": ["element-plus/global"]
-  }
+    "composite": true,
+    "types": [
+      "element-plus/global"
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "./**/*.d.ts"
+  ]
 }
