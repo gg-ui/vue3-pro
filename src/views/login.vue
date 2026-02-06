@@ -26,6 +26,7 @@
 import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus';
+import router from '@/router';
 interface sizeForm {
   name: string,
   password: string
@@ -55,7 +56,8 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     if (valid) {
       if (sizeForm.name === 'admin' && sizeForm.password === '123456') {
         ElMessage.success('登录成功')
-        active.value=true
+        active.value = true
+        router.push('/')
       } else {
         ElMessage.error('用户名或密码错误,请重新输入')
         formEl.resetFields()
