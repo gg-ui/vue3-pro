@@ -12,6 +12,20 @@
     }
   ],
   "compilerOptions": {
-    "module": "NodeNext"
-  }
+    "moduleResolution": "node",
+    "module": "esnext",
+    "types": [],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "./**/*.d.ts"
+  ]
 }
