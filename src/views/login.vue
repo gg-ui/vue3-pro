@@ -1,5 +1,6 @@
 <template>
-  <el-form
+  <div class="login">
+    <el-form
   class="loginForm"
     :model="sizeForm"
     label-width="auto"
@@ -22,7 +23,8 @@
     <el-form-item>
       <el-button :class="active?'active':''" class="loginBtn" @click="onSubmit">login</el-button>
     </el-form-item>
-  </el-form>
+    </el-form>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -59,6 +61,12 @@ function onSubmit() {
   syntax: "<angle>";
   initial-value: 132deg;
   inherits: false;
+}
+.login{
+  width:100vw;
+  height: 100vh;
+  background: url('../assets/loginBg.jpg');
+  background-position: center;
 }
 .loginForm{
   position: absolute;
