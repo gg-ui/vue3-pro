@@ -29,12 +29,14 @@ import { ElMessage } from 'element-plus';
 import router from '@/router';
 interface sizeForm {
   name: string,
-  password: string
+  password: string,
+  token: string
 }
 const loginFormRef = ref<FormInstance>()
 const sizeForm = reactive<sizeForm>({
   name: '',
-  password:'',
+  password: '',
+  token: '********************'
 })
 const rules = reactive<FormRules<sizeForm>>({
   name: [{
@@ -55,9 +57,10 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   await formEl.validate((valid, fields) => {
     if (valid) {
       if (sizeForm.name === 'admin' && sizeForm.password === '123456') {
-        ElMessage.success('登录成功')
+        sessionStorage.setItem('userInfo', JSON.stringify(sizeForm))
         active.value = true
         router.push('/')
+        ElMessage.success('登录成功')
       } else {
         ElMessage.error('用户名或密码错误,请重新输入')
         formEl.resetFields()
