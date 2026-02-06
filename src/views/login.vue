@@ -1,50 +1,76 @@
 <template>
   <div class="login">
-    <el-form
-  class="loginForm"
+  <el-form
+   ref="loginFormRef"
+    class="loginForm"
     :model="sizeForm"
+    :rules="rules"
     label-width="auto"
-    :label-position="labelPosition"
-    :size="size"
+    label-position="right"
   >
   <h1 class="title">TEST系统</h1>
-    <el-form-item label="name">
-      <el-input v-model="sizeForm.name" />
+    <el-form-item label="name" prop="name">
+      <el-input v-model="sizeForm.name" @input="inputValue('name')" />
     </el-form-item>
-    <el-form-item label="password">
-      <el-select
-        v-model="sizeForm.password"
-        placeholder="please select your zone"
-      >
-        <el-option label="Zone one" value="shanghai" />
-        <el-option label="Zone two" value="beijing" />
-      </el-select>
+    <el-form-item label="password" prop="password">
+     <el-input @keydown.enter.native="submitForm(loginFormRef)" type="password" v-model="sizeForm.password" @input="inputValue('password')" />
     </el-form-item>
     <el-form-item>
-      <el-button :class="active?'active':''" class="loginBtn" @click="onSubmit">login</el-button>
+      <el-button :class="active?'active':''" class="loginBtn" @click="submitForm(loginFormRef)">login</el-button>
     </el-form-item>
-    </el-form>
+  </el-form>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
-
-import type { ComponentSize, FormProps } from 'element-plus'
-
-const size = ref<ComponentSize>('default')
-const labelPosition = ref<FormProps['labelPosition']>('right')
-
-const sizeForm = reactive({
+import type { FormInstance, FormRules } from 'element-plus'
+import { ElMessage } from 'element-plus';
+interface sizeForm {
+  name: string,
+  password: string
+}
+const loginFormRef = ref<FormInstance>()
+const sizeForm = reactive<sizeForm>({
   name: '',
   password:'',
 })
+const rules = reactive<FormRules<sizeForm>>({
+  name: [{
+    required: true,
+    message: '请输入用户名',
+    trigger: 'blur'
+  }],
+  password: [{
+    required: true,
+    message: '请输入密码',
+    trigger: 'blur'
+  }],
+})
+
 const active=ref(false)
+const submitForm = async (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  await formEl.validate((valid, fields) => {
+    if (valid) {
+      if (sizeForm.name === 'admin' && sizeForm.password === '123456') {
+        ElMessage.success('登录成功')
+        active.value=true
+      } else {
+        ElMessage.error('用户名或密码错误,请重新输入')
+        formEl.resetFields()
+      }
+    } else {
+      ElMessage.error('请输入正确的用户名或密码')
+    }
+  })
+}
 
-function onSubmit() {
-  active.value = true
- console.log(6666);
-
+// 限制输入
+const inputValue = (val: string) => {
+  if (/[^A-Za-z0-9]/.test(sizeForm[val])) {
+  sizeForm[val]= sizeForm[val].replace(/[^A-Za-z0-9]/g,'')
+}
 }
 </script>
 
