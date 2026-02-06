@@ -14,7 +14,7 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "module": "NodeNext",
-    "composite": true,
+    "composite": true, // 允许编译构建引用项目，比如一个前端项目引用一个共享工具库
     "types": [
       "element-plus/global"
     ],
