@@ -68,9 +68,11 @@ function onSubmit() {
   transform: translate(-50%, -50%);
   width: 600px;
   height: 300px;
-  background-color: #fff;
   z-index: 50;
   padding: 40px 20px;
+     background-image: linear-gradient(
+       var(--rotate)
+       , #5ddcff, #3c67e3 43%, #4e00c2);
   .title{
     text-align: center;
     margin-bottom: 20px;
@@ -91,9 +93,7 @@ function onSubmit() {
      width: 104%;
      height: 102%;
      border-radius: 8px;
-     background-image: linear-gradient(
-       var(--rotate)
-       , #5ddcff, #3c67e3 43%, #4e00c2);
+     background: #fff;
      position: absolute;
      z-index: -1;
      top: -1%;
