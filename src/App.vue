@@ -1,70 +1,53 @@
+<template>
+  <div class="common-layout">
+    <el-container>
+      <el-header>Header</el-header>
+      <el-container>
+        <el-aside width="200px">
+          <el-menu
+          router
+                class="el-menu-vertical-demo"
+              >
+                <el-menu-item index="/nxtDy">
+                  <span>测试报</span>
+                </el-menu-item>
+              </el-menu>
+        </el-aside>
+        <el-container>
+          <el-main>
+            <RouterView />
+          </el-main>
+          <el-footer>Footer</el-footer>
+        </el-container>
+      </el-container>
+    </el-container>
+  </div>
+</template>
 <script setup lang="ts">
+import { getCurrentInstance } from 'vue';
+const { proxy, ctx }:any = getCurrentInstance();
+const goToPath = (name) => {
+  proxy.$router.push({ name })
+}
 </script>
 
-<template>
-  <RouterView />
-</template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+<style lang="scss" scoped>
+.common-layout {
+  display: flex;
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.el-header, .el-aside, .el-main {
+  background: #fff;
+  position: relative;
 }
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+.el-header {
+  box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
+  z-index: 5;
 }
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
+.el-aside {
+  box-shadow: 2px 0 -1px 0 rgba(29, 35, 41, .05);
+  z-index: 1;
 }
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.el-main {
+  margin: 15px 0 15px 15px;
 }
 </style>

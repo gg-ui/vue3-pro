@@ -12,7 +12,7 @@ const route = Object.keys(routeContext).map((key) => {
 const routes: RouteRecordRaw[] = [].concat(...route);
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/vue3-pro'),
   routes
 })
 export default router;

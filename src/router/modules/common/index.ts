@@ -2,9 +2,8 @@ import type { RouteRecordRaw } from 'vue-router';
 
 const routes: RouteRecordRaw[] = [
   {
-    path: '/layout',
-    name: 'layout',
-    component: () => import('@/views/layout.vue'),
+    path: '/',
+    redirect: { name: 'nxtDy' }
   },
   {
     path: '/login',
